@@ -27,4 +27,30 @@ router.get("/", (req, res) => {
       })
 })
 
+//UPDATE by id
+router.put("/:id", (req, res) => {
+  db("cars")
+    .where("id", req.params.id)
+    .update(req.body)
+      .then(entries => {
+        res.status(200),json(`Updated ${entries} entries`)
+      })
+      .catch(error => {
+        res.status(500).json(error)
+      })
+})
+
+//DELETE by id
+router.delete("/:id", (req, res) => {
+  db("cars")
+    .where("id", req.params.id)
+      .delete()
+      .then(entries => {
+        res.status(200).json(`Deleted ${entries} entries`)
+      })
+      .catch(error => {
+        res.status(500).json(error)
+      })
+})
+
 module.exports = router;
