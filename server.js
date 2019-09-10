@@ -1,9 +1,13 @@
 const express = require("express");
-const router = express.Router();
+const server = express();
 
 const carRouter = require("./carRouter")
 
 server.use(express.json())
 server.use("/api/carRouter", carRouter)
 
-modules.export = router;
+server.get("/", (req, res) => {
+  res.send("GET TEST SUCCESSFUL!")
+})
+
+module.exports = server;
